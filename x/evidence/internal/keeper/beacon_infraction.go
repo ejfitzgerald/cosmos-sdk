@@ -73,8 +73,10 @@ func (k Keeper) HandleBeaconInfraction(ctx sdk.Context, evidence types.BeaconInf
 	var slashFraction sdk.Dec
 	switch evidenceType {
 	case tmtypes.ABCIEvidenceTypeBeaconInactivity:
+		fmt.Println("SLASHING BEACON INACTIVITY!!!!")
 		slashFraction = k.slashingKeeper.SlashFractionBeaconInactivity(ctx)
 	case tmtypes.ABCIEvidenceTypeDKG:
+		fmt.Println("SLASHING DKG FAILURE!!!!")
 		slashFraction = k.slashingKeeper.SlashFractionDoubleSign(ctx)
 	default:
 		panic(fmt.Sprintf("Unknown beacon evidence type %s", evidenceType))
